@@ -22,7 +22,9 @@ The other folder `utils/` includes two utility scripts. `check_gpu_status/` is u
 
 ## Running Guide
 
-This project is based on the Python programming language and mainly uses external code libraries such as [Pygame](https://www.pygame.org/news)、[OpenAI Gym](https://github.com/openai/gym)、[Stable-Baselines3](https://stable-baselines3.readthedocs.io/en/master/). The Python version used for running the program is 3.8.16. It is recommended to use [Anaconda](https://www.anaconda.com) to configure the Python environment. The following setup process has been tested on the Windows 11 system. The following commands are for the console/terminal (Console/Terminal/Shell).
+This project is based on the Python programming language and mainly uses external code libraries such as [Pygame](https://www.pygame.org/news)、[OpenAI Gym](https://github.com/openai/gym)、[Stable-Baselines3](https://stable-baselines3.readthedocs.io/en/master/). The Python version used for running the program is 3.8.16. It is recommended to use [Anaconda](https://www.anaconda.com) to configure the Python environment.
+
+The following setup process has been tested on the MacOS 13.4.1 system.
 
 ### Environment Configuration
 
@@ -32,13 +34,13 @@ conda create -n SnakeAI python=3.8.16
 conda activate SnakeAI
 
 # [Optional] To use GPU for training, manually install the full version of PyTorch
-conda install pytorch=2.0.0 torchvision pytorch-cuda=11.8 -c pytorch -c nvidia
+conda install pytorch torchvision pytorch-cuda -c pytorch -c conda-forge
 
-# [Optional] Run the script to test if PyTorch can successfully call the GPU
-python .\utils\check_gpu_status.py
-
-# Install external code libraries
+# Install dependencies
 pip install -r requirements.txt
+
+# [Optional] Check MPS on M1/M2
+python utils/check_gpu_status_mps.py
 ```
 
 ### Running Tests
@@ -46,14 +48,14 @@ pip install -r requirements.txt
 The `main/` folder of the project contains the program scripts for the classic game "Snake", based on the [Pygame](https://www.pygame.org/news) code library. You can directly run the following command to play the game:
 
 ```bash
-cd [parent folder of the project]/snake-ai/main
-python .\snake_game.py
+cd main
+python snake_game.py
 ```
 
 After completing the environment configuration, you can run `test_cnn.py` or `test_mlp.py` in the `main/` folder to test and observe the actual performance of the two intelligent agents at different training stages.
 
 ```bash
-cd [parent folder of the project]/snake-ai/main
+cd main
 python test_cnn.py
 python test_mlp.py
 ```
@@ -65,7 +67,7 @@ Model weight files are stored in the `main/trained_models_cnn/` and `main/traine
 If you need to retrain the models, you can run `train_cnn.py` or `train_mlp.py` in the `main/` folder.
 
 ```bash
-cd [parent folder of the project]/snake-ai/main
+cd main
 python train_cnn.py
 python train_mlp.py
 ```
@@ -75,7 +77,7 @@ python train_mlp.py
 The project includes Tensorboard curve graphs of the training process. You can use Tensorboard to view detailed data. It is recommended to use the integrated Tensorboard plugin in VSCode for direct viewing, or you can use the traditional method:
 
 ```bash
-cd [parent folder of the project]/snake-ai/main
+cd main
 tensorboard --logdir=logs/
 ```
 
