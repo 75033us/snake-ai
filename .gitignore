@@ -162,3 +162,6 @@ main/trained_models_cnn_mps/*
 *Studio*
 
 *DS_Store*
+
+# Logs
+main/logs/
